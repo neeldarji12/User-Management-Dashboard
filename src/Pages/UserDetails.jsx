@@ -9,19 +9,20 @@ import "../Style/UserDetails.css";
 
 /**
  * ============================================================================
- * USER DETAILS PAGE (/users/:id)
+ * USER DETAILS PAGE (/users/:id) — PROFILE CARD VIEW
  * ============================================================================
  * Developer: Neel Darji | Applen Solutions
  * 
- * Functional Requirements:
- *   - Fetches individual user record by URL parameter (`id`) via getUserById(id)
- *   - Displays complete personal, address, company, and contact details
- *   - Provides navigational back link to return to the Users Directory (/users)
- *   - Includes loading, error, and not found handling
+ * Features:
+ *   - Comprehensive unified Profile Card design
+ *   - Gradient cover banner with user ID pill
+ *   - Overlapping profile avatar with verified badge
+ *   - Direct action buttons (Send Email, Call, Visit Website)
+ *   - Structured Personal, Location, and Organization sections inside the card
+ *   - Clean back navigation returning to /users
  * ============================================================================
  */
 function UserDetails() {
-  // Extract user ID from route parameter /users/:id
   const { id } = useParams();
 
   const [user, setUser] = useState(null);
@@ -90,7 +91,16 @@ function UserDetails() {
     return (
       <main className="details-container">
         <Link to="/users" className="back-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="m15 18-6-6 6-6" />
           </svg>
           <span>Back to Users Directory</span>
@@ -105,7 +115,7 @@ function UserDetails() {
     );
   }
 
-  // Helper to extract user initials
+  // Helper to extract 2-letter user initials
   const initials = user.name
     ? user.name
         .split(" ")
@@ -123,198 +133,338 @@ function UserDetails() {
 
   return (
     <main className="details-container">
-      {/* Back Link */}
+      {/* Top Navigation Bar */}
       <nav className="details-nav">
         <Link to="/users" className="back-link">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="m15 18-6-6 6-6" />
           </svg>
           <span>Back to Users Directory</span>
         </Link>
 
-        <div className="user-id-badge">
-          <span>User ID #{user.id}</span>
+        <div className="breadcrumb-info">
+          <span>Users</span>
+          <span className="crumb-slash">/</span>
+          <span className="crumb-active">{user.name}</span>
         </div>
       </nav>
 
-      {/* User Header Profile Card */}
-      <section className="details-header-card">
-        <div className="user-avatar-large" aria-hidden="true">
-          {initials}
+      {/* MASTER USER PROFILE CARD */}
+      <article className="user-profile-master-card">
+        {/* Cover Gradient Banner */}
+        <div className="card-cover-banner">
+          <span className="cover-badge">APPLEN ID #{user.id}</span>
+          <span className="cover-city-tag">📍 {user.address?.city}</span>
         </div>
 
-        <div className="header-info">
-          <div className="header-tags">
-            <span className="profile-tag">Public API Record</span>
-            <span className="city-pill">📍 {user.address?.city}</span>
+        {/* Profile Card Header Info */}
+        <div className="card-header-body">
+          <div className="profile-avatar-wrapper">
+            <div className="profile-avatar-circle" aria-hidden="true">
+              {initials}
+            </div>
+            <span className="avatar-status-badge" title="Active User"></span>
           </div>
 
-          <h1 className="user-name-title">{user.name}</h1>
+          <div className="profile-identity">
+            <div className="identity-title-row">
+              <h1 className="profile-full-name">{user.name}</h1>
+              <span className="verified-check" title="Verified Record">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                </svg>
+              </span>
+            </div>
 
-          <div className="header-submeta">
-            <span className="user-handle">@{user.username}</span>
-            <span className="meta-dot">•</span>
-            <span className="user-company-quick">{user.company?.name}</span>
+            <p className="profile-username">@{user.username}</p>
+
+            <p className="profile-company-role">
+              Works at <strong>{user.company?.name}</strong> • Based in{" "}
+              <strong>{user.address?.city}</strong>
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Detailed Information Grid */}
-      <div className="details-sections-grid">
-        {/* Section 1: Contact & Personal Info */}
-        <section className="details-card">
-          <div className="card-header">
-            <div className="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
+          {/* Quick Action Buttons */}
+          <div className="profile-quick-actions">
+            <a
+              href={`mailto:${user.email}`}
+              className="quick-btn primary-quick-btn"
+              title={`Send email to ${user.email}`}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
-            </div>
-            <h2>Personal & Contact Information</h2>
+              <span>Email</span>
+            </a>
+
+            <a
+              href={`tel:${user.phone}`}
+              className="quick-btn secondary-quick-btn"
+              title={`Call ${user.phone}`}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              <span>Call</span>
+            </a>
+
+            <a
+              href={`https://${user.website}`}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="quick-btn secondary-quick-btn"
+              title={`Visit ${user.website}`}
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <span>Website</span>
+            </a>
           </div>
+        </div>
 
-          <div className="details-grid">
-            <div className="detail-field">
-              <span className="field-label">Full Name</span>
-              <p className="field-value highlight">{user.name}</p>
+        {/* Card Content Divider */}
+        <div className="card-divider"></div>
+
+        {/* Card Sections Body */}
+        <div className="card-sections-container">
+          {/* Section 1: Personal & Contact Information */}
+          <section className="card-inner-section">
+            <div className="section-title-bar">
+              <div className="section-title-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+              </div>
+              <h3>Personal & Contact Information</h3>
             </div>
 
-            <div className="detail-field">
-              <span className="field-label">Username</span>
-              <p className="field-value">@{user.username}</p>
-            </div>
+            <div className="info-fields-grid">
+              <div className="info-field">
+                <span className="field-label">Full Name</span>
+                <span className="field-data font-semibold">{user.name}</span>
+              </div>
 
-            <div className="detail-field">
-              <span className="field-label">Email Address</span>
-              <p className="field-value">
-                <a href={`mailto:${user.email}`} className="action-link">
+              <div className="info-field">
+                <span className="field-label">Username</span>
+                <span className="field-data">@{user.username}</span>
+              </div>
+
+              <div className="info-field">
+                <span className="field-label">Email Address</span>
+                <a href={`mailto:${user.email}`} className="field-link">
                   {user.email}
                 </a>
-              </p>
-            </div>
+              </div>
 
-            <div className="detail-field">
-              <span className="field-label">Phone Number</span>
-              <p className="field-value">
-                <a href={`tel:${user.phone}`} className="action-link">
+              <div className="info-field">
+                <span className="field-label">Phone Number</span>
+                <a href={`tel:${user.phone}`} className="field-link">
                   {user.phone}
                 </a>
-              </p>
-            </div>
+              </div>
 
-            <div className="detail-field full-width">
-              <span className="field-label">Official Website</span>
-              <p className="field-value">
+              <div className="info-field span-full">
+                <span className="field-label">Official Website</span>
                 <a
                   href={`https://${user.website}`}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="external-link"
+                  className="field-link external"
                 >
                   <span>https://{user.website}</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     <polyline points="15 3 21 3 21 9" />
                     <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
                 </a>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Section 2: Address Information */}
-        <section className="details-card">
-          <div className="card-header">
-            <div className="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-            </div>
-            <h2>Address & Location</h2>
-          </div>
-
-          <div className="details-grid">
-            <div className="detail-field">
-              <span className="field-label">Street Address</span>
-              <p className="field-value">{user.address?.street}</p>
-            </div>
-
-            <div className="detail-field">
-              <span className="field-label">Suite / Apt</span>
-              <p className="field-value">{user.address?.suite}</p>
-            </div>
-
-            <div className="detail-field">
-              <span className="field-label">City</span>
-              <p className="field-value">{user.address?.city}</p>
-            </div>
-
-            <div className="detail-field">
-              <span className="field-label">Zip Code</span>
-              <p className="field-value">{user.address?.zipcode}</p>
-            </div>
-
-            {/* Geo Coordinates */}
-            {user.address?.geo && (
-              <div className="detail-field full-width">
-                <span className="field-label">Geo Coordinates</span>
-                <div className="geo-location-box">
-                  <span className="geo-coordinates">
-                    Lat: {user.address.geo.lat} | Lng: {user.address.geo.lng}
-                  </span>
-                  {mapsUrl && (
-                    <a
-                      href={mapsUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="maps-button"
-                    >
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
-                        <line x1="9" y1="3" x2="9" y2="18" />
-                        <line x1="15" y1="6" x2="15" y2="21" />
-                      </svg>
-                      <span>Open in Maps</span>
-                    </a>
-                  )}
-                </div>
               </div>
-            )}
-          </div>
-        </section>
-
-        {/* Section 3: Company Information */}
-        <section className="details-card full-grid-width">
-          <div className="card-header">
-            <div className="card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-              </svg>
             </div>
-            <h2>Company & Employment</h2>
-          </div>
+          </section>
 
-          <div className="details-grid three-columns">
-            <div className="detail-field">
-              <span className="field-label">Company Name</span>
-              <p className="field-value company-title">{user.company?.name}</p>
-            </div>
-
-            <div className="detail-field">
-              <span className="field-label">Catchphrase</span>
-              <p className="field-value quote-text">&ldquo;{user.company?.catchPhrase}&rdquo;</p>
+          {/* Section 2: Address & Location */}
+          <section className="card-inner-section">
+            <div className="section-title-bar">
+              <div className="section-title-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <h3>Address & Location</h3>
             </div>
 
-            <div className="detail-field">
-              <span className="field-label">Business Strategy (BS)</span>
-              <p className="field-value">{user.company?.bs}</p>
+            <div className="info-fields-grid">
+              <div className="info-field">
+                <span className="field-label">Street Address</span>
+                <span className="field-data">{user.address?.street}</span>
+              </div>
+
+              <div className="info-field">
+                <span className="field-label">Suite / Apartment</span>
+                <span className="field-data">{user.address?.suite}</span>
+              </div>
+
+              <div className="info-field">
+                <span className="field-label">City</span>
+                <span className="field-data">{user.address?.city}</span>
+              </div>
+
+              <div className="info-field">
+                <span className="field-label">Zip Code</span>
+                <span className="field-data">{user.address?.zipcode}</span>
+              </div>
+
+              {/* Geo Coordinates with Map Action */}
+              {user.address?.geo && (
+                <div className="info-field span-full">
+                  <span className="field-label">Geographical Coordinates</span>
+                  <div className="coordinates-pill-box">
+                    <span className="coords-code">
+                      Lat: {user.address.geo.lat} • Lng: {user.address.geo.lng}
+                    </span>
+                    {mapsUrl && (
+                      <a
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="map-action-pill"
+                      >
+                        <svg
+                          width="13"
+                          height="13"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+                          <line x1="9" y1="3" x2="9" y2="18" />
+                          <line x1="15" y1="6" x2="15" y2="21" />
+                        </svg>
+                        <span>View on Google Maps</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-        </section>
-      </div>
+          </section>
+
+          {/* Section 3: Company & Employment */}
+          <section className="card-inner-section">
+            <div className="section-title-bar">
+              <div className="section-title-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                </svg>
+              </div>
+              <h3>Company & Organization</h3>
+            </div>
+
+            <div className="info-fields-grid three-col">
+              <div className="info-field">
+                <span className="field-label">Company Name</span>
+                <span className="field-data company-name-highlight">
+                  {user.company?.name}
+                </span>
+              </div>
+
+              <div className="info-field">
+                <span className="field-label">Catchphrase</span>
+                <span className="field-data catchphrase-quote">
+                  &ldquo;{user.company?.catchPhrase}&rdquo;
+                </span>
+              </div>
+
+              <div className="info-field">
+                <span className="field-label">Business Domain (BS)</span>
+                <span className="field-data">{user.company?.bs}</span>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
     </main>
   );
 }

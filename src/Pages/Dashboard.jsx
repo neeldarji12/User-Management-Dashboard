@@ -6,6 +6,7 @@ import { getUsers } from "../services/userService";
 import SearchBar from "../Components/SearchBar";
 import CityFilter from "../Components/CityFilter";
 import UserTable from "../Components/UserTable";
+import UserCards from "../Components/UserCards";
 import Pagination from "../Components/Pagination";
 import Loading from "../Components/Loading";
 import ErrorMessage from "../Components/ErrorMessage";
@@ -27,6 +28,7 @@ const USERS_PER_PAGE = 5;
  *   3. Filter users based on search term (name or email) AND selected city.
  *   4. Client-side pagination slices the filtered array into 5 items per page.
  *   5. When filters change, currentPage is automatically reset to page 1.
+ *   6. Displays users in interactive Cards Grid (default) or Table view mode.
  * ============================================================================
  */
 function Dashboard() {
@@ -48,6 +50,9 @@ function Dashboard() {
   // 5. Asynchronous network state indicators
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // 6. View Mode layout toggle: "cards" (User Cards Grid) or "table" (Table)
+  const [viewMode, setViewMode] = useState("cards");
 
   // --------------------------------------------------------------------------
   // DATA FETCHING (API Integration)
@@ -161,7 +166,7 @@ function Dashboard() {
   function handlePageChange(page) {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
-      // Smooth scroll back to table top on mobile
+      // Smooth scroll back to table/cards top
       window.scrollTo({ top: 180, behavior: "smooth" });
     }
   }
@@ -316,8 +321,76 @@ function Dashboard() {
         )}
       </section>
 
-      {/* Results Section (Table or No Results) */}
+      {/* Results Section */}
       <section className="results-section">
+        {/* Results Controls Header (Count + Layout Mode Toggle) */}
+        {filteredUsers.length > 0 && (
+          <div className="results-header-bar">
+            <div className="results-count-meta">
+              <span className="results-badge">Directory View</span>
+              <p className="results-count-text">
+                Showing <strong>{currentUsers.length}</strong> of{" "}
+                <strong>{filteredUsers.length}</strong> matching records
+              </p>
+            </div>
+
+            {/* View Mode Switcher: Cards / Table */}
+            <div className="view-mode-toggle" role="group" aria-label="Layout view mode">
+              <button
+                type="button"
+                className={`view-mode-btn ${viewMode === "cards" ? "active" : ""}`}
+                onClick={() => setViewMode("cards")}
+                title="Card Grid View"
+                aria-pressed={viewMode === "cards"}
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect width="7" height="7" x="3" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="3" rx="1" />
+                  <rect width="7" height="7" x="14" y="14" rx="1" />
+                  <rect width="7" height="7" x="3" y="14" rx="1" />
+                </svg>
+                <span>Cards</span>
+              </button>
+
+              <button
+                type="button"
+                className={`view-mode-btn ${viewMode === "table" ? "active" : ""}`}
+                onClick={() => setViewMode("table")}
+                title="Table View"
+                aria-pressed={viewMode === "table"}
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="8" y1="6" x2="21" y2="6" />
+                  <line x1="8" y1="12" x2="21" y2="12" />
+                  <line x1="8" y1="18" x2="21" y2="18" />
+                  <line x1="3" y1="6" x2="3.01" y2="6" />
+                  <line x1="3" y1="12" x2="3.01" y2="12" />
+                  <line x1="3" y1="18" x2="3.01" y2="18" />
+                </svg>
+                <span>Table</span>
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Requirement 8: No results message when filters match no records */}
         {filteredUsers.length === 0 ? (
           <div className="no-results-card">
@@ -356,8 +429,12 @@ function Dashboard() {
           </div>
         ) : (
           <>
-            {/* Requirement 2: Users Table */}
-            <UserTable users={currentUsers} />
+            {/* View Mode Switch: User Cards Grid or User Table */}
+            {viewMode === "cards" ? (
+              <UserCards users={currentUsers} />
+            ) : (
+              <UserTable users={currentUsers} />
+            )}
 
             {/* Requirement 5: 5 users per page pagination with prev/next & indicators */}
             <Pagination

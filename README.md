@@ -18,7 +18,7 @@ This application is a responsive, modern frontend dashboard built to manage and 
 | Requirement | Implementation Detail | Status |
 |---|---|:---:|
 | **1. Fetch Users API** | Asynchronous `fetch()` service (`userService.js`) retrieving records from `https://jsonplaceholder.typicode.com/users`. | ✅ Complete |
-| **2. Users Table** | Displays **Name**, **Email**, **Phone**, **Company**, and **City** with avatar initials and interactive contact links. | ✅ Complete |
+| **2. Users Directory (Cards & Table)** | Displays **Name**, **Email**, **Phone**, **Company**, and **City** with avatar initials and interactive contact links in modern **Cards Grid View** (default) with a 1-click toggle to **Table View**. | ✅ Complete |
 | **3. Real-time Search** | Instant case-insensitive filtering matching either user name or email address. | ✅ Complete |
 | **4. Dynamic City Filter** | Populates dropdown from unique cities extracted dynamically from API records. | ✅ Complete |
 | **5. Pagination (5 users/page)** | 5 records per page with Previous / Next buttons, page number controls, and record indicator. | ✅ Complete |
@@ -44,11 +44,12 @@ user-management-dashboard/
 │   │   ├── Navbar.jsx          # Header navigation with brand & active route tabs
 │   │   ├── Pagination.jsx      # Page navigation (5 items/page, Prev/Next, Page numbers)
 │   │   ├── SearchBar.jsx       # Search input with clear button & icons
+│   │   ├── UserCards.jsx       # Responsive Card Grid view of users
 │   │   └── UserTable.jsx       # Tabular display of users with responsive scrolling
 │   ├── Pages/                  # Route views
 │   │   ├── Home.jsx            # Landing / Overview page with project context & CTA
-│   │   ├── Dashboard.jsx       # Users Directory page (search, filters, table, pagination)
-│   │   ├── UserDetails.jsx     # Deep detail profile page (/users/:id)
+│   │   ├── Dashboard.jsx       # Users Directory page (search, filters, cards/table, pagination)
+│   │   ├── UserDetails.jsx     # Deep detail profile card (/users/:id)
 │   │   └── NotFound.jsx        # 404 fallback page
 │   ├── services/               # API layer (Separation of Concerns)
 │   │   └── userService.js      # getUsers() & getUserById(id)
@@ -62,6 +63,7 @@ user-management-dashboard/
 │   │   ├── NotFound.css
 │   │   ├── Pagination.css
 │   │   ├── SearchBar.css
+│   │   ├── UserCards.css
 │   │   ├── UserDetails.css
 │   │   └── UserTable.css
 │   ├── App.jsx                 # Route definitions & router provider

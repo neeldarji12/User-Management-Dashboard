@@ -1,0 +1,335 @@
+/**
+ * ============================================================================
+ * USER DETAILS STYLES
+ * ============================================================================
+ * Comprehensive user profile layout with cards, responsive grid, and badges.
+ * ============================================================================
+ */
+
+.details-container {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* Nav Header */
+.details-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary-600);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  background-color: #ffffff;
+  border: 1px solid var(--slate-200);
+  box-shadow: var(--shadow-xs);
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  color: var(--primary-800);
+  background-color: var(--slate-100);
+  border-color: var(--slate-300);
+  transform: translateX(-2px);
+}
+
+.user-id-badge {
+  background-color: var(--slate-100);
+  border: 1px solid var(--slate-200);
+  color: var(--slate-600);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* Header Profile Card */
+.details-header-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin-bottom: 30px;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-800));
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.header-info {
+  flex: 1;
+}
+
+.header-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.profile-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--primary-700);
+  background-color: var(--primary-50);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.city-pill {
+  font-size: 12px;
+  color: var(--slate-600);
+  background-color: var(--slate-100);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+}
+
+.user-name-title {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 800;
+  color: var(--slate-900);
+  letter-spacing: -0.5px;
+  margin-bottom: 6px;
+}
+
+.header-submeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.user-handle {
+  color: var(--primary-600);
+  font-weight: 600;
+}
+
+.meta-dot {
+  color: var(--slate-300);
+}
+
+.user-company-quick {
+  color: var(--slate-500);
+}
+
+/* Sections Grid */
+.details-sections-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.details-card {
+  background: #ffffff;
+  border: 1px solid var(--slate-200);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-xs);
+}
+
+.details-card.full-grid-width {
+  grid-column: 1 / -1;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 18px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--slate-200);
+}
+
+.card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background-color: var(--primary-50);
+  color: var(--primary-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-header h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+/* Grid & Fields */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.details-grid.three-columns {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.field-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.field-value {
+  font-size: 14px;
+  color: var(--slate-800);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.field-value.highlight {
+  font-weight: 600;
+  color: var(--slate-900);
+}
+
+.company-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-800);
+}
+
+.quote-text {
+  font-style: italic;
+  color: var(--slate-600);
+}
+
+.action-link {
+  color: var(--primary-600);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.action-link:hover {
+  text-decoration: underline;
+  color: var(--primary-800);
+}
+
+.external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-600);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.external-link:hover {
+  text-decoration: underline;
+}
+
+/* Geo Coordinates Box */
+.geo-location-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background-color: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.geo-coordinates {
+  font-family: monospace;
+  font-size: 13px;
+  color: var(--slate-700);
+}
+
+.maps-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: var(--primary-600);
+  color: #ffffff;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.maps-button:hover {
+  background-color: var(--primary-700);
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .details-sections-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .details-grid.three-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .details-container {
+    padding: 20px 16px 40px;
+  }
+
+  .details-header-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 16px;
+  }
+
+  .user-avatar-large {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -21,7 +21,7 @@ This application is a responsive, modern frontend dashboard built to manage and 
 | **2. Users Directory (Cards & Table)** | Displays **Name**, **Email**, **Phone**, **Company**, and **City** with avatar initials and interactive contact links in modern **Cards Grid View** (default) with a 1-click toggle to **Table View**. | ✅ Complete |
 | **3. Real-time Search** | Instant case-insensitive filtering matching either user name or email address. | ✅ Complete |
 | **4. Dynamic City Filter** | Populates dropdown from unique cities extracted dynamically from API records. | ✅ Complete |
-| **5. Pagination (5 users/page)** | 5 records per page with Previous / Next buttons, page number controls, and record indicator. | ✅ Complete |
+| **5. Pagination (6 users/page)** | 6 records per page (optimized for balanced 3-column grid) with Previous / Next buttons, page number controls, and record indicator. | ✅ Complete |
 | **6. Dedicated User Details Route** | React Router dynamic route (`/users/:id`, e.g. `/users/3`) opened via "View Details". | ✅ Complete |
 | **7. User Details Display** | Renders name, username, email, phone, street, suite, city, zipcode, geo coordinates, website, and company details. | ✅ Complete |
 | **8. State Handling** | Custom animated loading spinner, error alert with retry button, and no-results view with filter reset. | ✅ Complete |
@@ -42,7 +42,7 @@ user-management-dashboard/
 │   │   ├── ErrorMessage.jsx    # Error state card with retry button
 │   │   ├── Loading.jsx         # Animated dual-ring loading spinner
 │   │   ├── Navbar.jsx          # Header navigation with brand & active route tabs
-│   │   ├── Pagination.jsx      # Page navigation (5 items/page, Prev/Next, Page numbers)
+│   │   ├── Pagination.jsx      # Page navigation (6 items/page, Prev/Next, Page numbers)
 │   │   ├── SearchBar.jsx       # Search input with clear button & icons
 │   │   ├── UserCards.jsx       # Responsive Card Grid view of users
 │   │   └── UserTable.jsx       # Tabular display of users with responsive scrolling
@@ -129,10 +129,10 @@ const filteredUsers = users.filter((user) => {
 });
 ```
 
-### 5. Client-Side Pagination Math (5 Records per Page)
+### 5. Client-Side Pagination Math (6 Records per Page)
 Because JSONPlaceholder does not provide server-side filtering or pagination, pagination is computed on the filtered array:
 ```javascript
-const USERS_PER_PAGE = 5;
+const USERS_PER_PAGE = 6;
 
 // Total pages calculation
 const totalPages = Math.max(1, Math.ceil(filteredUsers.length / USERS_PER_PAGE));

@@ -13,8 +13,8 @@ import ErrorMessage from "../Components/ErrorMessage";
 
 import "../Style/Dashboard.css";
 
-// Requirement 5: Display five users per page
-const USERS_PER_PAGE = 5;
+// Display 6 users / employees per page for optimal grid alignment
+const USERS_PER_PAGE = 6;
 
 /**
  * ============================================================================
@@ -26,7 +26,7 @@ const USERS_PER_PAGE = 5;
  *   1. useEffect triggers loadUsers() on mount to fetch data from API.
  *   2. Dynamic city list is extracted from fetched user records.
  *   3. Filter users based on search term (name or email) AND selected city.
- *   4. Client-side pagination slices the filtered array into 5 items per page.
+ *   4. Client-side pagination slices the filtered array into 6 items per page.
  *   5. When filters change, currentPage is automatically reset to page 1.
  *   6. Displays users in interactive Cards Grid (default) or Table view mode.
  * ============================================================================

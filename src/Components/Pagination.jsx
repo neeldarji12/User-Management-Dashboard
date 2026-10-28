@@ -14,7 +14,7 @@ function Pagination({
   currentPage,
   totalPages,
   totalItems,
-  pageSize = 5,
+  pageSize = 6,
   onPageChange,
 }) {
   // Generate array of page numbers [1, 2, ..., totalPages]

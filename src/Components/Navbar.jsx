@@ -1,17 +1,8 @@
 import { NavLink, Link } from "react-router-dom";
 import "../Style/Navbar.css";
 
-/**
- * ============================================================================
- * NAVBAR COMPONENT
- * ============================================================================
- * Features:
- *   - Applen Solutions brand logo linking to Home ('/')
- *   - Navigation links (Home, Users Directory) using NavLink for active styling
- *   - Intern developer badge (Neel Darji)
- *   - Fully responsive layout for desktop, tablet, and mobile
- * ============================================================================
- */
+/* NAVBAR COMPONENT */
+
 function Navbar() {
   return (
     <header className="navbar">

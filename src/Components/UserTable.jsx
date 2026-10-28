@@ -1,21 +1,7 @@
 import { Link } from "react-router-dom";
 import "../Style/UserTable.css";
 
-/**
- * ============================================================================
- * USER TABLE COMPONENT
- * ============================================================================
- * Displays fetched users in a structured, accessible data table.
- * 
- * Columns:
- *   1. Name (with avatar initials and @username)
- *   2. Email (interactive mailto link)
- *   3. Phone (interactive tel link)
- *   4. Company (business name)
- *   5. City (visual badge)
- *   6. Action (View Details button routed via React Router)
- * ============================================================================
- */
+ //* USER TABLE COMPONENT
 function UserTable({ users }) {
   // Helper to extract 1 or 2 letter initials from a user's full name
   const getInitials = (name) => {

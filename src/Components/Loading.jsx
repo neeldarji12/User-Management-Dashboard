@@ -1,15 +1,7 @@
 import "../Style/Loading.css";
 
-/**
- * ============================================================================
- * LOADING COMPONENT
- * ============================================================================
- * Features:
- *   - Modern dual-ring spinner with pulse effect
- *   - Contextual loading message
- *   - Accessible role="status" and aria-live="polite"
- * ============================================================================
- */
+/* LOADING COMPONENT */
+
 function Loading({ message = "Connecting to JSONPlaceholder API..." }) {
   return (
     <div className="loading-container" role="status" aria-live="polite">

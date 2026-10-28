@@ -1,19 +1,8 @@
 import { Link } from "react-router-dom";
 import "../Style/UserCards.css";
 
-/**
- * ============================================================================
- * USER CARDS GRID COMPONENT
- * ============================================================================
- * Developer: Neel Darji | Applen Solutions
- * 
- * Features:
- *   - Responsive card grid layout for the users directory
- *   - Shows Name, Avatar, Username, Company, City, Email, and Phone on each card
- *   - Interactive contact links (mailto: and tel:)
- *   - Direct "View Details →" action button linking to /users/:id
- * ============================================================================
- */
+ //* USER CARDS GRID COMPONENT
+ 
 function UserCards({ users }) {
   // Helper to extract 2-letter initials
   const getInitials = (name) => {

@@ -1,15 +1,7 @@
 import "../Style/Pagination.css";
 
-/**
- * ============================================================================
- * PAGINATION COMPONENT
- * ============================================================================
- * Provides user-friendly page navigation controls:
- *   - Previous / Next buttons with disable states
- *   - Direct numeric page buttons (e.g. [1] [2])
- *   - Accessible page indicator
- * ============================================================================
- */
+/* PAGINATION COMPONENT */
+
 function Pagination({
   currentPage,
   totalPages,

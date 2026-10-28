@@ -7,21 +7,8 @@ import ErrorMessage from "../Components/ErrorMessage";
 
 import "../Style/UserDetails.css";
 
-/**
- * ============================================================================
- * USER DETAILS PAGE (/users/:id) — PROFILE CARD VIEW
- * ============================================================================
- * Developer: Neel Darji | Applen Solutions
- * 
- * Features:
- *   - Comprehensive unified Profile Card design
- *   - Gradient cover banner with user ID pill
- *   - Overlapping profile avatar with verified badge
- *   - Direct action buttons (Send Email, Call, Visit Website)
- *   - Structured Personal, Location, and Organization sections inside the card
- *   - Clean back navigation returning to /users
- * ============================================================================
- */
+/* USER DETAILS PAGE (/users/:id) — PROFILE CARD VIEW8*/
+
 function UserDetails() {
   const { id } = useParams();
 

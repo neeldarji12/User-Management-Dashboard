@@ -1,12 +1,7 @@
 import "../Style/ErrorMessage.css";
 
-/**
- * ============================================================================
- * ERROR MESSAGE COMPONENT
- * ============================================================================
- * Displays a friendly alert with error diagnostics and a retry action button.
- * ============================================================================
- */
+/* ERROR MESSAGE COMPONENT */
+ 
 function ErrorMessage({
   title = "Failed to Fetch Data",
   message = "Something went wrong while connecting to the users API.",

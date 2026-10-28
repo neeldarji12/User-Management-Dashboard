@@ -16,25 +16,10 @@ import "../Style/Dashboard.css";
 // Display 6 users / employees per page for optimal grid alignment
 const USERS_PER_PAGE = 6;
 
-/**
- * ============================================================================
- * DASHBOARD PAGE (Users Directory)
- * ============================================================================
- * Developer: Neel Darji | Applen Solutions
- * 
- * Logic Flow:
- *   1. useEffect triggers loadUsers() on mount to fetch data from API.
- *   2. Dynamic city list is extracted from fetched user records.
- *   3. Filter users based on search term (name or email) AND selected city.
- *   4. Client-side pagination slices the filtered array into 6 items per page.
- *   5. When filters change, currentPage is automatically reset to page 1.
- *   6. Displays users in interactive Cards Grid (default) or Table view mode.
- * ============================================================================
- */
+
 function Dashboard() {
-  // --------------------------------------------------------------------------
-  // STATE MANAGEMENT
-  // --------------------------------------------------------------------------
+ 
+    
   // 1. Raw users array fetched from JSONPlaceholder API
   const [users, setUsers] = useState([]);
 
@@ -54,9 +39,9 @@ function Dashboard() {
   // 6. View Mode layout toggle: "cards" (User Cards Grid) or "table" (Table)
   const [viewMode, setViewMode] = useState("cards");
 
-  // --------------------------------------------------------------------------
+
   // DATA FETCHING (API Integration)
-  // --------------------------------------------------------------------------
+  
   async function loadUsers() {
     try {
       setLoading(true);
@@ -104,9 +89,9 @@ function Dashboard() {
     };
   }, []);
 
-  // --------------------------------------------------------------------------
+ 
   // COMPUTED VALUES (Derived State)
-  // --------------------------------------------------------------------------
+  
   // Requirement 4: Dynamic city dropdown based on cities present in records
   const cities = useMemo(() => {
     const cityList = users
@@ -144,9 +129,9 @@ function Dashboard() {
   const endIndex = startIndex + USERS_PER_PAGE;
   const currentUsers = filteredUsers.slice(startIndex, endIndex);
 
-  // --------------------------------------------------------------------------
+  
   // EVENT HANDLERS (Requirement 9: Reset pagination on filter change)
-  // --------------------------------------------------------------------------
+
   function handleSearchChange(value) {
     setSearch(value);
     setCurrentPage(1); // Reset to page 1
@@ -173,9 +158,11 @@ function Dashboard() {
 
   const hasActiveFilters = search.trim() !== "" || selectedCity !== "";
 
-  // --------------------------------------------------------------------------
+  
+  
   // CONDITIONAL RENDERING: LOADING & ERROR STATES (Requirement 8)
-  // --------------------------------------------------------------------------
+ 
+  
   if (loading) {
     return (
       <main className="dashboard-container">
@@ -196,9 +183,7 @@ function Dashboard() {
     );
   }
 
-  // --------------------------------------------------------------------------
   // MAIN DASHBOARD UI
-  // --------------------------------------------------------------------------
   return (
     <main className="dashboard-container">
       {/* Breadcrumb Navigation */}

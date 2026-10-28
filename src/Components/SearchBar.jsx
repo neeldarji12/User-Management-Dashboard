@@ -1,15 +1,7 @@
 import "../Style/SearchBar.css";
 
-/**
- * ============================================================================
- * SEARCH BAR COMPONENT
- * ============================================================================
- * Features:
- *   - Case-insensitive search input by Name or Email
- *   - Integrated search icon and 1-click clear (✕) button
- *   - Accessible label and focus states
- * ============================================================================
- */
+/* SEARCH BAR COMPONENT */
+
 function SearchBar({ search, onSearchChange }) {
   return (
     <div className="search-box">

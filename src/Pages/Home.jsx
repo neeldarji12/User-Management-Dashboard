@@ -1,16 +1,8 @@
 import { Link } from "react-router-dom";
 import "../Style/Home.css";
 
-/**
- * ============================================================================
- * HOME / LANDING PAGE
- * ============================================================================
- * Developer: Neel Darji | Applen Solutions
- * 
- * Clean, focused overview page introducing the User Management Dashboard
- * with direct navigation to the interactive Users Directory.
- * ============================================================================
- */
+/* HOME / LANDING PAGE */
+
 function Home() {
   return (
     <main className="home-container">

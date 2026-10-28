@@ -1,15 +1,7 @@
 import "../Style/CityFilter.css";
 
-/**
- * ============================================================================
- * CITY FILTER COMPONENT
- * ============================================================================
- * Features:
- *   - Dynamically generated city options extracted from loaded API data
- *   - Custom styled select with chevron indicator
- *   - 'All Cities' reset option
- * ============================================================================
- */
+/* CITY FILTER COMPONENT */
+ 
 function CityFilter({ cities, selectedCity, onCityChange }) {
   return (
     <div className="city-filter">

@@ -1,13 +1,8 @@
 import { Link } from "react-router-dom";
 import "../Style/NotFound.css";
 
-/**
- * ============================================================================
- * 404 NOT FOUND PAGE
- * ============================================================================
- * Handles invalid routes gracefully with clear navigation back to active pages.
- * ============================================================================
- */
+/* 404 NOT FOUND PAGE */
+ 
 function NotFound() {
   return (
     <main className="not-found-container">

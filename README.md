@@ -194,26 +194,6 @@ npm run lint
 
 ---
 
-## 🎓 Intern Interview Guide (How Neel Darji Can Explain This Code)
-
-When your mentor or interviewer asks about this implementation, here are clear explanations you can share:
-
-1. **Why use an API service layer instead of calling `fetch()` inside the component?**
-   > *"Separating `userService.js` from the UI follows the Separation of Concerns principle. It makes the code cleaner, reusable across multiple components (like `Dashboard` and `UserDetails`), and makes testing much easier."*
-
-2. **Why do we need `useMemo` for cities and filtered users?**
-   > *"In React, computations inside a component re-run on every render. `useMemo` ensures the unique cities list and filtered array are only recalculated when the raw `users` list, `search` term, or `selectedCity` actually change, optimizing performance."*
-
-3. **How does pagination work client-side?**
-   > *"Since JSONPlaceholder sends all 10 users in one request, we store the full list in state, filter it based on user inputs, and then calculate `startIndex = (currentPage - 1) * 5` and `endIndex = startIndex + 5`. Using `array.slice(startIndex, endIndex)` gives us exactly the 5 records for the active page."*
-
-4. **Why did we reset pagination to Page 1 when filtering?**
-   > *"If a user is on Page 2 and types a search keyword that only has 3 matches, keeping them on Page 2 would display an empty page. Resetting to Page 1 ensures the user immediately sees the top results of their query."*
-
-5. **How does the route `/users/:id` receive the user ID?**
-   > *"We defined `<Route path="/users/:id" element={<UserDetails />} />` in `App.jsx`. In `UserDetails.jsx`, we use the `useParams()` hook from `react-router-dom` to extract `id` from the URL, then pass it to `getUserById(id)` to load that specific user's information."*
-
----
 
 ## 🎨 Styling Architecture
 - All stylesheets are located inside the dedicated `src/Style/` folder as requested.

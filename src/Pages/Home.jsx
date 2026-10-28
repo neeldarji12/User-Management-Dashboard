@@ -10,16 +10,16 @@ function Home() {
       <section className="home-hero">
         <div className="hero-badge">
           <span className="badge-pulse"></span>
-          <span>APPLEN SOLUTIONS • Frontend Developer Task</span>
+          <span>APPLEN SOLUTIONS • Employee Portal</span>
         </div>
 
         <h1 className="hero-title">
-          User Management <span>Dashboard</span>
+          APPLEN <span>SOLUTIONS</span>
         </h1>
 
         <p className="hero-subtitle">
-          A modern React application integrating public REST APIs with real-time search,
-          dynamic city filtering, client-side pagination, and dedicated user detail routing.
+          Welcome to the Applen Solutions Workspace.
+          Your central hub for managing daily projects, track task workflows, log shifts, and collaborate seamlessly across our global development teams. Let’s innovate and build something great today!
         </p>
 
         {/* Primary Action Button */}
